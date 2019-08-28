@@ -5,12 +5,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    parameters: {
+      rotSym: 10,
+      explode: false,
+      singletons: false,
+      drawInner: false,
+      alternateInner: true,
+      drawColor: true,
+      xInset: 100,
+      yInset: 100,
+      easing: .05,
+      dMaxRot: 540,
+      minSize: 20,
+      maxSize: 60,
+      turnDistance: 15
+    }
   },
   mutations: {
-
+    SET_PARAMETERS(state, parameters) {
+      state.parameters = parameters;
+    }
   },
-  actions: {
-
-  }
 })
