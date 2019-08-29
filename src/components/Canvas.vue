@@ -91,7 +91,7 @@ export default {
   methods: {
     handleResize() {
       console.log("resizing");
-      this.sk.resizeCanvas(this.canvasWidth, this.canvasHeight);
+      // this.sk.resizeCanvas(this.canvasWidth, this.canvasHeight);
       // this.setup(this.sk);
     },
     setup(sk) {
