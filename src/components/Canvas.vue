@@ -1,5 +1,5 @@
 <template>
-  <div class="canvasBox" ref="canvasBox">
+  <v-flex class="canvasBox" ref="canvasBox">
     <!-- <vue-p5
       @preload="preload"
       @setup="setup"
@@ -9,11 +9,13 @@
       @mousedragged="mouseDragged"
     />-->
     <vue-p5 @setup="setup" @draw="draw" />
-  </div>
+  </v-flex>
 </template>
 
 <script>
 import VueP5 from "vue-p5";
+
+import { mapState } from "vuex";
 
 class Point {
   constructor(x, y) {
@@ -33,23 +35,23 @@ export default {
       margin: 20,
 
       // Configurable parameters
-      rotSym: this.$store.state.parameters.rotSym,
-      explode: this.$store.state.parameters.explode,
-      singletons: this.$store.state.parameters.singletons,
-      drawInner: this.$store.state.parameters.drawInner,
-      alternateInner: this.$store.state.parameters.alternateInner,
-      drawColor: this.$store.state.parameters.drawColor,
-      xInset: this.$store.state.parameters.xInset,
-      yInset: this.$store.state.parameters.yInset,
-      easing: this.$store.state.parameters.easing,
-      dMaxRot: this.$store.state.parameters.dMaxRot,
-      minSize: this.$store.state.parameters.minSize,
-      maxSize: this.$store.state.parameters.maxSize,
-      turnDistance: this.$store.state.parameters.turnDistance,
+      // parameters.rotSym: this.$store.state.parameters.parameters.rotSym,
+      // parameters.explode: this.$store.state.parameters.parameters.explode,
+      // parameters.singletons: this.$store.state.parameters.parameters.singletons,
+      // parameters.drawInner: this.$store.state.parameters.parameters.drawInner,
+      // parameters.alternateInner: this.$store.state.parameters.parameters.alternateInner,
+      // parameters.drawColor: this.$store.state.parameters.parameters.drawColor,
+      // parameters.xInset: this.$store.state.parameters.parameters.xInset,
+      // parameters.yInset: this.$store.state.parameters.parameters.yInset,
+      // parameters.easing: this.$store.state.parameters.parameters.easing,
+      // parameters.dMaxRot: this.$store.state.parameters.parameters.dMaxRot,
+      // parameters.minSize: this.$store.state.parameters.parameters.minSize,
+      // parameters.maxSize: this.$store.state.parameters.parameters.maxSize,
+      // parameters.turnDistance: this.$store.state.parameters.parameters.turnDistance,
 
       // initial values
-      x: 0,
-      y: 0,
+      x: null,
+      y: null,
       rot: 0,
       size: 50,
 
@@ -72,6 +74,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["parameters"]),
     canvasWidth() {
       return this.$refs.canvasBox.clientWidth - this.margin;
     },
@@ -88,12 +91,16 @@ export default {
   methods: {
     handleResize() {
       console.log("resizing");
+      this.sk.resizeCanvas(this.canvasWidth, this.canvasHeight);
       // this.setup(this.sk);
     },
     setup(sk) {
       // this.sk = sk;
-      sk.createCanvas(this.canvasWidth, this.canvasHeight);
+      sk.createCanvas(this.canvasWidth, 600);
       sk.frameRate(60);
+      sk.background("black");
+      this.x = this.targetX = this.canvasWidth / 2;
+      this.y = this.targetY = this.canvasHeight / 2;
     },
     draw(sk) {
       const width = this.canvasWidth;
@@ -106,26 +113,35 @@ export default {
         this.targetY
       );
 
-      if (distanceToTarget < this.turnDistance) {
+      if (distanceToTarget < this.parameters.turnDistance) {
         this.legCount++;
 
-        if (this.singletons) {
+        if (this.parameters.singletons) {
           sk.background(0);
         }
-        if (this.explode) {
+        if (this.parameters.explode) {
           this.x = width / 2;
           this.y = height / 2;
         }
         this.initialX = this.x;
         this.initialY = this.y;
-        this.targetX = sk.random(this.xInset, width - this.xInset);
-        this.targetY = sk.random(this.yInset, height - this.yInset);
-        this.targetRot = sk.random(
-          this.rot - this.dMaxRot,
-          this.rot + this.dMaxRot
+        this.targetX = sk.random(
+          this.parameters.xInset,
+          width - this.parameters.xInset
         );
-        this.targetSize = sk.random(this.minSize, this.maxSize);
-        if (this.drawColor) {
+        this.targetY = sk.random(
+          this.parameters.yInset,
+          height - this.parameters.yInset
+        );
+        this.targetRot = sk.random(
+          this.rot - this.parameters.dMaxRot,
+          this.rot + this.parameters.dMaxRot
+        );
+        this.targetSize = sk.random(
+          this.parameters.minSize,
+          this.parameters.maxSize
+        );
+        if (this.parameters.drawColor) {
           this.targetRed = sk.random(0, 255);
           this.targetGreen = sk.random(0, 255);
           this.targetBlue = sk.random(0, 255);
@@ -142,30 +158,30 @@ export default {
       const progressPercent = 1 - distanceToTarget / overallDistance;
 
       const dx = this.targetX - this.x;
-      this.x += dx * this.easing;
+      this.x += dx * this.parameters.easing;
 
       const dy = this.targetY - this.y;
-      this.y += dy * this.easing;
+      this.y += dy * this.parameters.easing;
 
       const dRot = this.targetRot - this.rot;
-      this.rot += dRot * this.easing;
+      this.rot += dRot * this.parameters.easing;
 
       const dSize = this.targetSize - this.size;
-      this.size += dSize * this.easing;
+      this.size += dSize * this.parameters.easing;
 
       const dRed = this.targetRed - this.red;
-      this.red += dRed * this.easing;
+      this.red += dRed * this.parameters.easing;
       const dGreen = this.targetGreen - this.green;
-      this.green += dGreen * this.easing;
+      this.green += dGreen * this.parameters.easing;
       const dBlue = this.targetBlue - this.blue;
-      this.blue += dBlue * this.easing;
+      this.blue += dBlue * this.parameters.easing;
 
       const centerX = width / 2;
       const centerY = height / 2;
 
-      const sliceDegrees = 360 / this.rotSym;
+      const sliceDegrees = 360 / this.parameters.rotSym;
 
-      for (let i = 0; i < this.rotSym; i++) {
+      for (let i = 0; i < this.parameters.rotSym; i++) {
         const deltaRot = sliceDegrees * i;
         const p = this.getRotatedPoint(
           centerX - this.x,
@@ -175,12 +191,12 @@ export default {
 
         const angle = (Math.atan2(p.y, p.x) / Math.PI) * 180;
 
-        if (this.drawColor) {
+        if (this.parameters.drawColor) {
           sk.fill(this.red, this.green, this.blue);
         } else {
           const lightColor = i % 2 == 0 ? 200 : 255;
 
-          if (this.drawInner) {
+          if (this.parameters.drawInner) {
             sk.fill(this.legCount % 2 == 1 ? lightColor : 0);
           } else {
             sk.fill(i % 2 == 0 ? 200 : 255);
@@ -195,19 +211,20 @@ export default {
           this.size
         );
 
-        if (this.drawInner) {
+        if (this.parameters.drawInner) {
           sk.fill(this.legCount % 2 == 1 ? 0 : 255);
-          const innerSize = this.legCount % 2 == 1
-            ? sk.constrain(
-                (progressPercent + 0.1) * this.targetSize,
-                0,
-                this.targetSize
-              )
-            : sk.constrain(
-                (1 - progressPercent + 0.1) * this.targetSize,
-                0,
-                this.targetSize
-              );
+          const innerSize =
+            this.legCount % 2 == 1
+              ? sk.constrain(
+                  (progressPercent + 0.1) * this.targetSize,
+                  0,
+                  this.targetSize
+                )
+              : sk.constrain(
+                  (1 - progressPercent + 0.1) * this.targetSize,
+                  0,
+                  this.targetSize
+                );
           this.drawTriangle(
             sk,
             centerX + p.x,

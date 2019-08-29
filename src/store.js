@@ -14,7 +14,7 @@ export default new Vuex.Store({
       drawColor: true,
       xInset: 100,
       yInset: 100,
-      easing: .05,
+      easing: .01,
       dMaxRot: 540,
       minSize: 20,
       maxSize: 60,

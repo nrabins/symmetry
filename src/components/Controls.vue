@@ -1,8 +1,5 @@
 <template>
-  <div class="controls">
-    <input placeholder="Color" :value="parameters.color" @input="updateColor"/>
-    Controls over here
-  </div>
+  <v-checkbox v-model="parameters.drawColor" @change="updateColor" label="Use Color"/>
 </template>
 
 <script>
@@ -15,9 +12,9 @@ export default {
     })
   },
   methods: {
-    updateColor(e) {
+    updateColor(val) {
       let newParameters = {...this.parameters};
-      newParameters.color = e.target.value;
+      newParameters.color = val;
       this.$store.commit('SET_PARAMETERS', newParameters);
     }
   }  

@@ -1,38 +1,47 @@
 <template>
-  <div id="app">
-    <v-controls />
-    <v-canvas id="canvas"/>
-  </div>
+  <v-app>
+    <!-- <v-app-bar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Vuetify</span>
+        <span class="font-weight-light">MATERIAL DESIGN</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+      >
+        <span class="mr-2">Latest Release</span>
+      </v-btn>
+    </v-app-bar>-->
+
+    <v-content fill-height>
+      <v-container>
+        <v-layout>
+          <v-flex xs4>
+            <v-controls />
+          </v-flex>
+          <v-flex xs8>
+            <v-card>
+              <v-card-text>
+                <v-canvas/>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import Controls from '@/components/Controls';
-import Canvas from '@/components/Canvas'
+import Canvas from "@/components/Canvas";
+import Controls from "@/components/Controls";
 
 export default {
-  name: 'app',
   components: {
-    "v-controls": Controls,
     "v-canvas": Canvas,
+    "v-controls": Controls
   }
-}
+};
 </script>
-
-<style>
-html, body {
-  margin: 0;
-  height: 100%;
-}
-
-#app {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  background-color: black;
-}
-
-#canvas {
-  flex-grow: 1;
-}
-</style>
