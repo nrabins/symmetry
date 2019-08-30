@@ -16,6 +16,8 @@ let parameters = {
   turnDistance: 15
 }
 
+const BACKGROUND_COLOR = 48;
+
 export function setParameters(newParameters) {
   parameters = newParameters;
 }
@@ -41,7 +43,7 @@ export function main(_p5) {
   const sizeCanvas = function () {
     const dimensions = getParentDimensions();
     p5.resizeCanvas(dimensions.width, dimensions.height, true);
-    p5.background(0);
+    p5.background(BACKGROUND_COLOR);
   }
 
   let x = null;
@@ -72,7 +74,7 @@ export function main(_p5) {
     sizeCanvas();
 
     p5.frameRate(120);
-    p5.background("black");
+    p5.background(BACKGROUND_COLOR);
     x = targetX = p5.width / 2;
     y = targetY = p5.height / 2;
   };
@@ -89,7 +91,7 @@ export function main(_p5) {
       legCount++;
 
       if (parameters.singletons) {
-        p5.background(0);
+        p5.background(BACKGROUND_COLOR);
       }
       if (parameters.explode) {
         x = p5.width / 2;
