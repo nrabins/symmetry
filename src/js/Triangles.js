@@ -41,7 +41,7 @@ export function main(_p5) {
   const sizeCanvas = function () {
     const dimensions = getParentDimensions();
     p5.resizeCanvas(dimensions.width, dimensions.height, true);
-    // p5.background(0);
+    p5.background(0);
   }
 
   let x = null;
@@ -71,7 +71,7 @@ export function main(_p5) {
     canvas.parent("p5Canvas");
     sizeCanvas();
 
-    p5.frameRate(60);
+    p5.frameRate(120);
     p5.background("black");
     x = targetX = p5.width / 2;
     y = targetY = p5.height / 2;

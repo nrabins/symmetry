@@ -18,7 +18,10 @@
     <v-content>
       <v-container grid-list-lg fill-height>
         <v-layout>
-          <v-flex>
+          <v-flex xs2>
+            <v-controls/>
+          </v-flex>
+          <v-flex xs10>
             <v-demo-canvas/>
           </v-flex>
         </v-layout>
@@ -43,13 +46,13 @@
 
 <script>
 // import Canvas from "@/components/Canvas";
-// import Controls from "@/components/Controls";
+import Controls from "@/components/Controls";
 import DemoCanvas from "@/components/DemoCanvas";
 
 export default {
   components: {
     // "v-canvas": Canvas,
-    // "v-controls": Controls,
+    "v-controls": Controls,
     "v-demo-canvas": DemoCanvas
   }
 };

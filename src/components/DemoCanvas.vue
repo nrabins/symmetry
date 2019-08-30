@@ -3,13 +3,23 @@
 </template>
 
 <script>
-import { main } from '@/js/Triangles'
+import { main, setParameters } from '@/js/Triangles'
+
+import { mapState } from 'vuex';
 
 export default {
   mounted() {
     const P5 = require("p5");
     new P5(main);
   },
+  computed: {
+    ...mapState(['parameters']),
+  },
+  watch: {
+    parameters: function (newParameters, oldParameters) {
+      setParameters(newParameters);
+    }
+  }
 };
 </script>
 
