@@ -1,5 +1,7 @@
 <template>
-  <v-checkbox v-model="parameters.drawColor" @change="updateColor" label="Use Color"/>
+  <v-layout>
+    <v-checkbox v-model="parameters.drawColor" @change="updateColor" label="Use Color"/>
+  </v-layout>
 </template>
 
 <script>
@@ -20,9 +22,3 @@ export default {
   }  
 }
 </script>
-
-<style>
-.controls {
-  background-color: rgb(209, 209, 209);
-}
-</style>

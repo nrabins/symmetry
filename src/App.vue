@@ -22,7 +22,7 @@
             <v-controls/>
           </v-flex>
           <v-flex xs10>
-            <v-demo-canvas/>
+            <v-canvas/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -47,13 +47,13 @@
 <script>
 // import Canvas from "@/components/Canvas";
 import Controls from "@/components/Controls";
-import DemoCanvas from "@/components/DemoCanvas";
+import Canvas from "@/components/Canvas";
 
 export default {
   components: {
     // "v-canvas": Canvas,
     "v-controls": Controls,
-    "v-demo-canvas": DemoCanvas
+    "v-canvas": Canvas
   }
 };
 </script>
