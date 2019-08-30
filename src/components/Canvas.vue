@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import VueP5 from "vue-p5";
-
 import { mapState } from "vuex";
 
 class Point {
@@ -25,9 +23,6 @@ class Point {
 }
 
 export default {
-  components: {
-    "vue-p5": VueP5
-  },
   data() {
     return {
       // Meta stuff
@@ -91,7 +86,7 @@ export default {
   methods: {
     handleResize() {
       console.log("resizing");
-      this.sk.resizeCanvas(this.canvasWidth, this.canvasHeight);
+      // this.sk.resizeCanvas(this.canvasWidth, this.canvasHeight);
       // this.setup(this.sk);
     },
     setup(sk) {

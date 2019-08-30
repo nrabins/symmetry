@@ -14,7 +14,7 @@ export default {
   methods: {
     updateColor(val) {
       let newParameters = {...this.parameters};
-      newParameters.color = val;
+      newParameters.drawColor = val;
       this.$store.commit('SET_PARAMETERS', newParameters);
     }
   }  

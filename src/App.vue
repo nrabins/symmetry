@@ -15,8 +15,18 @@
       </v-btn>
     </v-app-bar>-->
 
-    <v-content fill-height>
-      <v-container>
+    <v-content>
+      <v-container grid-list-lg fill-height>
+        <v-layout>
+          <v-flex xs2>
+            <v-controls/>
+          </v-flex>
+          <v-flex xs10>
+            <v-demo-canvas/>
+          </v-flex>
+        </v-layout>
+      </v-container>
+      <!-- <v-container>
         <v-layout>
           <v-flex xs4>
             <v-controls />
@@ -29,19 +39,21 @@
             </v-card>
           </v-flex>
         </v-layout>
-      </v-container>
+      </v-container>-->
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Canvas from "@/components/Canvas";
+// import Canvas from "@/components/Canvas";
 import Controls from "@/components/Controls";
+import DemoCanvas from "@/components/DemoCanvas";
 
 export default {
   components: {
-    "v-canvas": Canvas,
-    "v-controls": Controls
+    // "v-canvas": Canvas,
+    "v-controls": Controls,
+    "v-demo-canvas": DemoCanvas
   }
 };
 </script>
