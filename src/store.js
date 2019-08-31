@@ -23,7 +23,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_PARAMETERS(state, parameters) {
-      state.parameters = parameters;
+      state.parameters = { ...parameters };
     }
   },
 })

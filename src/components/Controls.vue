@@ -1,11 +1,21 @@
 <template>
-  <v-layout>
-    <v-checkbox v-model="parameters.drawColor" @change="updateColor" label="Use Color"/>
+  <v-layout wrap>
+    <v-flex>
+      <v-btn block outlined @click="clear">Clear</v-btn>
+    </v-flex>
+    <v-flex xs12>
+      <v-text-field type="number" v-model="parameters.rotSym" @change="update" label="# Triangles" />
+    </v-flex>
+    <v-flex xs12>
+      <v-checkbox v-model="parameters.drawColor" @change="update" label="Use Color" />
+    </v-flex>
   </v-layout>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { clearCanvas } from "@/js/Triangles";
+
+import { mapState } from "vuex";
 
 export default {
   computed: {
@@ -14,11 +24,12 @@ export default {
     })
   },
   methods: {
-    updateColor(val) {
-      let newParameters = {...this.parameters};
-      newParameters.drawColor = val;
-      this.$store.commit('SET_PARAMETERS', newParameters);
+    update() {
+      this.$store.commit("SET_PARAMETERS", this.parameters);
+    },
+    clear() {
+      clearCanvas();
     }
-  }  
-}
+  }
+};
 </script>

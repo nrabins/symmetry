@@ -16,10 +16,14 @@ let parameters = {
   turnDistance: 15
 }
 
-const BACKGROUND_COLOR = 48;
+const BACKGROUND_COLOR = 'rgba(0, 0, 0, 0)';
 
 export function setParameters(newParameters) {
   parameters = newParameters;
+}
+
+export function clearCanvas() {
+  p5.clear();
 }
 
 class Point {
