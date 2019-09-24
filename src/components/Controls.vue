@@ -1,5 +1,5 @@
 <template>
-  <v-layout wrap>
+  <!-- <v-layout wrap>
     <v-flex>
       <v-btn block outlined @click="clear">Clear</v-btn>
     </v-flex>
@@ -9,7 +9,10 @@
     <v-flex xs12>
       <v-checkbox v-model="parameters.drawColor" @change="update" label="Use Color" />
     </v-flex>
-  </v-layout>
+  </v-layout> -->
+  <div>
+    Controls
+  </div>
 </template>
 
 <script>
