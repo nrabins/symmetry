@@ -1,5 +1,7 @@
 <template>
-  <v-canvas />
+  <div class="main-container">
+    <v-canvas class="tile"/>
+  </div>
 </template>
 
 <script>
@@ -16,12 +18,27 @@ export default {
 </script>
 
 <style lang="scss">
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
 
 body {
   background-color: rgb(53, 53, 53);
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile {
+  height: 500px;
+  width: 500px;
+
+  box-shadow: 5px 5px black;
 }
 </style>

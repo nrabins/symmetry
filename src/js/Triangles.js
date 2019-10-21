@@ -9,7 +9,7 @@ let parameters = {
   drawColor: false,
   xInset: 100,
   yInset: 100,
-  easing: .04,
+  easing: .01,
   dMaxRot: 540,
   minSize: 20,
   maxSize: 60,

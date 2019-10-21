@@ -16,7 +16,7 @@ export default {
     ...mapState(['parameters']),
   },
   watch: {
-    parameters: function (newParameters, oldParameters) {
+    parameters: function (newParameters) {
       setParameters(newParameters);
     }
   }
@@ -25,6 +25,6 @@ export default {
 
 <style>
 #p5Canvas {
-  height: 100%;
+  background-color:pink;
 }
 </style>
