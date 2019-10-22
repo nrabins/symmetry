@@ -1,19 +1,24 @@
 <template>
   <div class="main-container">
     <v-canvas class="tile"/>
+    <dat-gui/>
   </div>
 </template>
 
 <script>
 // import Controls from "@/components/Controls";
 import Canvas from "@/components/Canvas";
+import DatGui from '@/components/DatGui';
+
+import * as dat from 'dat.gui';
 
 export default {
   components: {
     // "v-canvas": Canvas,
     // "v-controls": Controls,
-    "v-canvas": Canvas
-  }
+    "v-canvas": Canvas,
+    "dat-gui": DatGui,
+  },
 };
 </script>
 

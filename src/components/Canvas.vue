@@ -10,6 +10,7 @@ import { mapState } from 'vuex';
 export default {
   mounted() {
     const P5 = require("p5");
+    setParameters(this.parameters);
     new P5(main);
   },
   computed: {

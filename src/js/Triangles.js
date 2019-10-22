@@ -233,5 +233,5 @@ export function main(_p5) {
     return new Point(rotatedX, rotatedY);
   }
 
-  p5.windowResized = sizeCanvas;
+  //p5.windowResized = sizeCanvas;
 }
